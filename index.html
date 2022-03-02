@@ -10,9 +10,13 @@
 </head>
 <body>
     <div id="headWrapper">
-        <h1>Weather App</h1>
-        <label for="zipcodeBox">Zipcode:</label>
-        <input type="text" id="zipcodeBox" label="Zipcode:" minlength="4" maxlength="8" size="15" placeholder="ex. 40509">
+        <h1 id="header">Weather App</h1>
+        <!-- <div id = "sumbitOrganism"> -->
+            <label for="zipcodeBox">Zipcode:</label>
+            <input type="text" id="zipcodeBox" label="Zipcode:" minlength="5" maxlength="5" size="15" placeholder="ex. 40509">
+            <button id="button">Get weather!</button>
+            <p id="helperText" >The input should be a 5-digit zipcode and should not contain letters or symbols.</p>
+        <!-- </div> -->
     </div>
     <div id="weatherContainer"></div>
     <script src="./node_modules/axios/dist/axios.min.js"></script> 

@@ -1,17 +1,37 @@
+const helperText = document.querySelector('p');
+const weatherBlock = document.querySelector('#weatherContainer'); // id in html
+const input = document.querySelector('#zipcodeBox');
+const header = document.querySelector('#header');
+const button = document.querySelector('#button');
+const headWrapper = document.querySelector('#headWrapper');
+const cityP = document.createElement('p');
+const temperatureP = document.createElement('p');
+const conditionP = document.createElement('p');
+
+
 const key = '94017407c1b8e8bc75ac701e2dbb7042';
-let userZip = '40509'; // need to change later
-const weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${key}`;
+let userZip = input.value;
+let weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${key}`;
 let weatherData = [];
 let weatherState = {
     city: [],
     temperature: [],
     condition: []
 }
-const cityP = document.createElement('p');
-const temperatureP = document.createElement('p');
-const conditionP = document.createElement('p');
-const weatherBlock = document.querySelector('#weatherContainer'); // id in html
 
+
+function init () {
+    cityP.hidden = true;
+    temperatureP.hidden = true;
+    conditionP.hidden = true;
+    helperText.hidden = true;
+    // header.hidden = false;
+    // input.hidden = false;
+    // button.hidden = false;
+    headWrapper.hidden = false;
+}
+
+init();
 
 async function asyncAxios () {
     let request = await axios.get(weatherLink);
@@ -20,8 +40,8 @@ async function asyncAxios () {
     setState(weatherData);
 }
 
-asyncAxios(); // call function
-console.log(weatherData);
+
+
 
 function setState(weatherData) {
     weatherState.city = weatherData.name;
@@ -41,3 +61,21 @@ function setState(weatherData) {
 
     console.log(weatherState);
 }
+
+
+
+input.addEventListener('change', checkSubmission);
+
+function checkSubmission() {
+    if (isNaN(input.value) = true || input.value.length < 5) {
+        helperText.hidden = false;
+    } else {
+        //update weatherLink with input.value
+        asyncAxios();
+    }
+}
+
+
+
+cityP.style.border = "solid black";
+// do more css and bootstrap
