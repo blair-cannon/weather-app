@@ -28,14 +28,16 @@ function setState(weatherData) {
     const cityText = document.createTextNode(weatherState.city);
     cityP.appendChild(cityText);
     weatherBlock.appendChild(cityP);
-    
 
     weatherState.temperature = weatherData.main.temp + "K";
+    const weatherText = document.createTextNode(weatherState.temperature);
+    temperatureP.appendChild(weatherText);
+    weatherBlock.appendChild(temperatureP);
+
     weatherState.condition = weatherData.weather[0].description;
+    const conditionText = document.createTextNode(weatherState.condition);
+    conditionP.appendChild(conditionText);
+    weatherBlock.appendChild(conditionP);
+
     console.log(weatherState);
 }
-
-// const node = document.createElement("li");
-// const textnode = document.createTextNode("Water");
-// node.appendChild(textnode);
-// document.getElementById("myList").appendChild(node);
