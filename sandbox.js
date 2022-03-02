@@ -10,7 +10,7 @@ const conditionP = document.createElement('p');
 
 
 const key = '94017407c1b8e8bc75ac701e2dbb7042';
-let userZip = input.value;
+let userZip;
 let weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${key}`;
 let weatherData = [];
 let weatherState = {
@@ -67,10 +67,11 @@ function setState(weatherData) {
 input.addEventListener('change', checkSubmission);
 
 function checkSubmission() {
-    if (isNaN(input.value) = true || input.value.length < 5) {
+    if (isNaN(input.value) === true || input.value.length < 5) {
         helperText.hidden = false;
     } else {
         //update weatherLink with input.value
+        userZip = input.value;
         asyncAxios();
     }
 }
