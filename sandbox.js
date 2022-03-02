@@ -1,6 +1,6 @@
-const helperText = document.querySelector('p');
+const helperText = document.querySelector('#helperText');
 const weatherBlock = document.querySelector('#weatherContainer'); // id in html
-const input = document.querySelector('#zipcodeBox');
+const zipcodeInput = document.querySelector('#zipcodeInput');
 const header = document.querySelector('#header');
 const button = document.querySelector('#button');
 const headWrapper = document.querySelector('#headWrapper');
@@ -34,6 +34,7 @@ function init () {
 init();
 
 async function asyncAxios () {
+    console.log(userZip);
     let request = await axios.get(weatherLink);
     console.log(request);
     weatherData = await request.data;
@@ -64,14 +65,15 @@ function setState(weatherData) {
 
 
 
-input.addEventListener('change', checkSubmission);
+zipcodeInput.addEventListener('change', checkSubmission);
 
 function checkSubmission() {
-    if (isNaN(input.value) === true || input.value.length < 5) {
+    if (isNaN(zipcodeInput.value) === true || zipcodeInput.value.length < 5) {
         helperText.hidden = false;
     } else {
         //update weatherLink with input.value
-        userZip = input.value;
+        userZip = zipcodeInput.value;
+        console.log(userZip);
         asyncAxios();
     }
 }
