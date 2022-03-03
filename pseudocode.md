@@ -151,7 +151,6 @@ setState
 to do:
 1. store state for longer period of time
 2. icons to show: switch case
-3. error modal and consoled message not showing up
 4. fix temp rows to make even sizes
 5. change colors of input text box
 6. helperText doesn't show up when it should, same with color change

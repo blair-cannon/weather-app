@@ -1,3 +1,4 @@
+
 const helperText = document.querySelector('#helperText');
 const weatherContainer = document.querySelector('#weatherContainer'); 
 const zipcodeInput = document.querySelector('#zipcodeInput');
@@ -12,10 +13,12 @@ const conditionP = document.querySelector('#conditionP');
 const card1 = document.querySelector('#card1');
 const card2 = document.querySelector('#card2');
 const card3 = document.querySelector('#card3');
-const errorModal = document.querySelector('#errorModal');
+// const bootstrap = window.bootstrap = require('bootstrap');
+// const errorModal = document.querySelector('#errorModal');
 
-
-
+var myModal = new bootstrap.Modal(document.getElementById('errorModal'), {
+    keyboard: false
+  })
 
 
 const key = '94017407c1b8e8bc75ac701e2dbb7042';
@@ -38,8 +41,8 @@ function init () {
     card2.hidden = true;
     card3.hidden = true;
     helperText.hidden = true;
-    errorModal.hidden = true;
     headWrapper.hidden = false;
+    myModal.hide();
 }
 
 init();
@@ -54,7 +57,7 @@ async function asyncAxios () {
     }
     catch (error) {
         console.error('THERE WAS SOMETHING WRONG', error);
-        errorModal.hidden = false;
+        myModal.show();      
     }
 }
 
