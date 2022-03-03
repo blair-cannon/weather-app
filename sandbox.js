@@ -15,6 +15,8 @@ const card2 = document.querySelector('#card2');
 const card3 = document.querySelector('#card3');
 const image = document.querySelector('#image');
 const imageContainer = document.querySelector('#imageContainer');
+myStorage = window.localStorage;
+
 
 
 
@@ -23,18 +25,19 @@ var myModal = new bootstrap.Modal(document.getElementById('errorModal'), {
   })
 
 
-const key = '94017407c1b8e8bc75ac701e2dbb7042';
+const URLkey = '94017407c1b8e8bc75ac701e2dbb7042';
 
 let userZip;
 let weatherLink;
 let weatherData = [];
 let weatherState = {
-    city: [],
-    tempK: [],
-    tempF: [],
-    tempC: [],
-    condition: [],
-    image: []
+        city: [],
+        tempK: [],
+        tempF: [],
+        tempC: [],
+        condition: [],
+        image: []
+
 }
 
 function hideCards () {
@@ -65,6 +68,8 @@ async function asyncAxios () {
         console.log(request);
         weatherData = await request.data;
         setState(weatherData);
+        
+        
     }
     catch (error) {
         console.error('THERE WAS SOMETHING WRONG', error);
@@ -129,6 +134,7 @@ function setState(weatherData) {
     imageContainer.appendChild = image.src;
 
     showCards();
+    console.log(weatherState);
 }
 
 
@@ -144,13 +150,16 @@ function checkSubmission() {
     } else {
         //update weatherLink with input.value
         userZip = zipcodeInput.value;
-        console.log(userZip);
-        console.log(typeof userZip);
-        console.log(weatherLink);
+        // console.log(userZip);
+        // console.log(typeof userZip);
+        // console.log(weatherLink);
         image.hidden = false;
         zipcodeInput.style.border = "thick solid black";
-        weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${key}`;
+        weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${URLkey}`;
         asyncAxios();
+        // string = weatherState.stringify;
+        // console.log(weatherState.stringify);
+        // window.localStorage.setItem(userZip, weatherState.stringify);
 
     }
 }
