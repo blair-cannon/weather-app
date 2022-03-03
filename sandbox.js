@@ -4,9 +4,12 @@ const zipcodeInput = document.querySelector('#zipcodeInput');
 const header = document.querySelector('#header');
 const button = document.querySelector('#button');
 const headWrapper = document.querySelector('#headWrapper');
-const cityP = document.createElement('p');
-const temperatureP = document.createElement('p');
-const conditionP = document.createElement('p');
+// const cityP = document.createElement('p');
+// const temperatureP = document.createElement('p');
+// const conditionP = document.createElement('p');
+const cityP = document.querySelector('#cityP');
+const temperatureP = document.querySelector('#temperatureP');
+const conditionP = document.querySelector('#conditionP');
 
 
 const key = '94017407c1b8e8bc75ac701e2dbb7042';
@@ -51,19 +54,22 @@ async function asyncAxios () {
 
 function setState(weatherData) {
     weatherState.city = weatherData.name;
-    const cityText = document.createTextNode(weatherState.city);
-    cityP.appendChild(cityText);
-    weatherContainer.appendChild(cityP);
+    cityP.innerText = weatherState.city;
+    // const cityText = document.createTextNode(weatherState.city);
+    // cityP.appendChild(cityText);
+    // weatherContainer.appendChild(cityP);
 
     weatherState.temperature = weatherData.main.temp + "K";
-    const weatherText = document.createTextNode(weatherState.temperature);
-    temperatureP.appendChild(weatherText);
-    weatherContainer.appendChild(temperatureP);
+    temperatureP.innerText = weatherState.temperature;
+    // const weatherText = document.createTextNode(weatherState.temperature);
+    // temperatureP.appendChild(weatherText);
+    // weatherContainer.appendChild(temperatureP);
 
     weatherState.condition = weatherData.weather[0].description;
-    const conditionText = document.createTextNode(weatherState.condition);
-    conditionP.appendChild(conditionText);
-    weatherContainer.appendChild(conditionP);
+    conditionP.innerText = weatherState.condition;
+    // const conditionText = document.createTextNode(weatherState.condition);
+    // conditionP.appendChild(conditionText);
+    // weatherContainer.appendChild(conditionP);
 
     cityP.hidden = false;
     temperatureP.hidden = false;
@@ -87,6 +93,4 @@ function checkSubmission() {
 
 
 
-cityP.style.border = "solid black";
-cityP.style.width = "100px";
-// do more css and bootstrap
+
