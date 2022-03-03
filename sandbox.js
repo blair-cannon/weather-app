@@ -3,7 +3,7 @@ const helperText = document.querySelector('#helperText');
 const weatherContainer = document.querySelector('#weatherContainer'); 
 const zipcodeInput = document.querySelector('#zipcodeInput');
 const header = document.querySelector('#header');
-const button = document.querySelector('#button');
+// const button = document.querySelector('#button');
 const headWrapper = document.querySelector('#headWrapper');
 const cityP = document.querySelector('#cityP');
 const temperatureP1 = document.querySelector('#temperatureP1');
@@ -129,7 +129,7 @@ function setState(weatherData) {
 
 
 
-zipcodeInput.addEventListener('change', checkSubmission);
+zipcodeInput.addEventListener('input', checkSubmission);
 
 function checkSubmission() {
     if (isNaN(zipcodeInput.value) === true || zipcodeInput.value.length < 5) {
