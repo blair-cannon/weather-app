@@ -23,3 +23,13 @@ input {
     text-align: center;
     padding: 2em;
 }
+
+#image {
+    width: 600px;
+    height: 400px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+  }

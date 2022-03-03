@@ -13,8 +13,10 @@ const conditionP = document.querySelector('#conditionP');
 const card1 = document.querySelector('#card1');
 const card2 = document.querySelector('#card2');
 const card3 = document.querySelector('#card3');
-// const bootstrap = window.bootstrap = require('bootstrap');
-// const errorModal = document.querySelector('#errorModal');
+const image = document.querySelector('#image');
+const imageContainer = document.querySelector('#imageContainer');
+
+
 
 var myModal = new bootstrap.Modal(document.getElementById('errorModal'), {
     keyboard: false
@@ -32,7 +34,7 @@ let weatherState = {
     tempF: [],
     tempC: [],
     condition: [],
-    // image: []
+    image: []
 }
 
 function hideCards () {
@@ -120,9 +122,11 @@ function setState(weatherData) {
     }
 
     // image
-    const image = weatherData.weather[0].icon;
-    console.log(image);
-    // how to pull these icon images? https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2 
+    const imageIcon = weatherData.weather[0].icon;
+    iconURL = `https://openweathermap.org/img/wn/${imageIcon}@2x.png`;
+    // iconURL.replace('icon', imageIcon);
+    image.src = iconURL
+    imageContainer.appendChild = image.src;
 
     showCards();
 }
@@ -134,17 +138,18 @@ zipcodeInput.addEventListener('input', checkSubmission);
 function checkSubmission() {
     if (isNaN(zipcodeInput.value) === true || zipcodeInput.value.length < 5) {
         helperText.hidden = false;
-        zipcodeInput.style.border = "border-warning";
+        zipcodeInput.style.border = "thick solid yellow";
         hideCards();
-
     } else {
         //update weatherLink with input.value
         userZip = zipcodeInput.value;
         console.log(userZip);
         console.log(typeof userZip);
         console.log(weatherLink);
+        zipcodeInput.style.border = "thick solid black";
         weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${key}`;
         asyncAxios();
+
     }
 }
 
