@@ -65,6 +65,7 @@ async function asyncAxios () {
 
 
 function setState(weatherData) {
+    helperText.hidden = true;
     // city
     weatherState.city = weatherData.name;
     cityP.innerText = weatherState.city;
@@ -130,6 +131,10 @@ function checkSubmission() {
     if (isNaN(zipcodeInput.value) === true || zipcodeInput.value.length < 5) {
         helperText.hidden = false;
         zipcodeInput.style.border = "border-warning";
+        card1.hidden = true;
+        card2.hidden = true;
+        card3.hidden = true;
+
     } else {
         //update weatherLink with input.value
         userZip = zipcodeInput.value;
