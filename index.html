@@ -12,10 +12,23 @@
     <div id="headWrapper">
         <h1 id="header" class="text-center">Weather App</h1>
         <div class="d-flex align-items-center justify-content-center ">
-            <label for="zipcodeBox">Zipcode:</label>
-            <input type="text" id="zipcodeInput" label="Zipcode:" minlength="5" maxlength="5" size="15" placeholder="ex. 40509">
-            <button id="button">Get weather!</button>
-            <p id="helperText" >The input should be a 5-digit zipcode and should not contain letters or symbols.</p>
+
+          <div class="container">
+            <div class="row justify-content-md-center">
+              <div class="col-md-auto">
+                <label for="zipcodeBox">Zipcode:</label>
+                <input type="text" id="zipcodeInput" label="Zipcode:" minlength="5" maxlength="5" size="15" placeholder="ex. 40509">
+              </div>
+              <div class="col-md-auto">
+                <button id="button" class="rounded-pill">Get weather!</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p id="helperText" class="bg-warning text-dark ">The input should be a 5-digit zipcode and should not contain letters or symbols.</p>
+              </div>
+            </div>
+          </div> 
         </div>
     </div>
     <div id="weatherContainer" class="d-flex justify-content-center m-3">
