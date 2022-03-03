@@ -123,7 +123,7 @@ function setState(weatherData) {
 
     // image
     const imageIcon = weatherData.weather[0].icon;
-    iconURL = `https://openweathermap.org/img/wn/${imageIcon}@2x.png`;
+    iconURL = `https://openweathermap.org/img/wn/${imageIcon}@4x.png`;
     // iconURL.replace('icon', imageIcon);
     image.src = iconURL
     imageContainer.appendChild = image.src;
@@ -140,12 +140,14 @@ function checkSubmission() {
         helperText.hidden = false;
         zipcodeInput.style.border = "thick solid yellow";
         hideCards();
+        image.hidden = true;
     } else {
         //update weatherLink with input.value
         userZip = zipcodeInput.value;
         console.log(userZip);
         console.log(typeof userZip);
         console.log(weatherLink);
+        image.hidden = false;
         zipcodeInput.style.border = "thick solid black";
         weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${key}`;
         asyncAxios();
