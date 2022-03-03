@@ -1,12 +1,9 @@
 const helperText = document.querySelector('#helperText');
-const weatherContainer = document.querySelector('#weatherContainer'); // id in html
+const weatherContainer = document.querySelector('#weatherContainer'); 
 const zipcodeInput = document.querySelector('#zipcodeInput');
 const header = document.querySelector('#header');
 const button = document.querySelector('#button');
 const headWrapper = document.querySelector('#headWrapper');
-// const cityP = document.createElement('p');
-// const temperatureP = document.createElement('p');
-// const conditionP = document.createElement('p');
 const cityP = document.querySelector('#cityP');
 const temperatureP1 = document.querySelector('#temperatureP1');
 const temperatureP2 = document.querySelector('#temperatureP2');
@@ -20,6 +17,7 @@ const card3 = document.querySelector('#card3');
 
 
 const key = '94017407c1b8e8bc75ac701e2dbb7042';
+
 let userZip;
 let weatherLink;
 let weatherData = [];
@@ -28,7 +26,8 @@ let weatherState = {
     tempK: [],
     tempF: [],
     tempC: [],
-    condition: []
+    condition: [],
+    // image: []
 }
 
 
@@ -37,9 +36,6 @@ function init () {
     card2.hidden = true;
     card3.hidden = true;
     helperText.hidden = true;
-    // header.hidden = false;
-    // input.hidden = false;
-    // button.hidden = false;
     headWrapper.hidden = false;
 }
 
@@ -62,9 +58,11 @@ async function asyncAxios () {
 
 
 function setState(weatherData) {
+    // city
     weatherState.city = weatherData.name;
     cityP.innerText = weatherState.city;
 
+    // temp
     weatherState.tempK = Math.round(weatherData.main.temp) + "K";
     weatherState.tempF = Math.round((weatherData.main.temp - 273.15) * 9/5 + 32) + "\u00B0 F";
     weatherState.tempC = Math.round(weatherData.main.temp - 273.15) + '\u00B0 C';
@@ -73,13 +71,45 @@ function setState(weatherData) {
     temperatureP2.innerText = weatherState.tempF;
     temperatureP3.innerText = weatherState.tempC;
     
-
+    // condition
     weatherState.condition = weatherData.weather[0].description;
     conditionP.innerText = weatherState.condition;
 
-    // cityP.hidden = false;
-    // temperatureP.hidden = false;
-    // conditionP.hidden = false;
+    switch (weatherState.condition) {
+        case 'clear sky':
+            document.body.style.backgroundColor = "DeepSkyBlue";
+            break;
+        case 'few clouds':
+            document.body.style.backgroundColor = "PaleTurquoise";
+            break;
+        case 'scattered clouds':
+            document.body.style.backgroundColor = "CadetBlue";
+            break;
+        case 'broken clouds':
+            document.body.style.backgroundColor = "LightSteelBlue";
+            break;
+        case 'shower rain':
+            document.body.style.backgroundColor = "Silver"; 
+            break;   
+        case 'rain':
+            document.body.style.backgroundColor = "SteelBlue";
+            break;
+        case 'thunderstorm':
+            document.body.style.backgroundColor = "DarkSlateGray";
+            break;
+        case 'snow':
+            document.body.style.backgroundColor = "Snow";
+            break;
+        case 'mist':
+            document.body.style.backgroundColor = "Gainsboro";
+            break;
+    }
+
+    // image
+    const image = weatherData.weather[0].icon;
+    console.log(image);
+    // how to pull these icon images? https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2 
+
     card1.hidden = false;
     card2.hidden = false;
     card3.hidden = false;
@@ -104,5 +134,4 @@ function checkSubmission() {
 }
 
 
-// switch case
 
