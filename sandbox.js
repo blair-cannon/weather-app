@@ -12,6 +12,8 @@ const conditionP = document.querySelector('#conditionP');
 const card1 = document.querySelector('#card1');
 const card2 = document.querySelector('#card2');
 const card3 = document.querySelector('#card3');
+const errorModal = document.querySelector('#errorModal');
+
 
 
 
@@ -36,6 +38,7 @@ function init () {
     card2.hidden = true;
     card3.hidden = true;
     helperText.hidden = true;
+    errorModal.hidden = true;
     headWrapper.hidden = false;
 }
 
@@ -49,8 +52,9 @@ async function asyncAxios () {
         weatherData = await request.data;
         setState(weatherData);
     }
-    catch {
-        console.error('THERE WAS SOMETHING WRONG', err);
+    catch (error) {
+        console.error('THERE WAS SOMETHING WRONG', error);
+        errorModal.hidden = false;
     }
 }
 
@@ -128,7 +132,7 @@ function checkSubmission() {
         console.log(userZip);
         console.log(typeof userZip);
         console.log(weatherLink);
-        weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${key}`;
+        weatherLink = `https://api.penweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${key}`;
         asyncAxios();
     }
 }
