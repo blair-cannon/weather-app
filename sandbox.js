@@ -126,13 +126,14 @@ zipcodeInput.addEventListener('change', checkSubmission);
 function checkSubmission() {
     if (isNaN(zipcodeInput.value) === true || zipcodeInput.value.length < 5) {
         helperText.hidden = false;
+        zipcodeInput.style.border = "border-warning";
     } else {
         //update weatherLink with input.value
         userZip = zipcodeInput.value;
         console.log(userZip);
         console.log(typeof userZip);
         console.log(weatherLink);
-        weatherLink = `https://api.penweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${key}`;
+        weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${key}`;
         asyncAxios();
     }
 }
