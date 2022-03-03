@@ -6,3 +6,8 @@ input {
     margin-right: 10px;
     margin-left: 2px
 }
+
+#helperText {
+    width: max-content;
+    /* margin: auto; */
+}

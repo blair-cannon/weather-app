@@ -35,11 +35,20 @@ let weatherState = {
     // image: []
 }
 
-
-function init () {
+function hideCards () {
     card1.hidden = true;
     card2.hidden = true;
     card3.hidden = true;
+}
+
+function showCards() {
+    card1.hidden = false;
+    card2.hidden = false;
+    card3.hidden = false;
+}
+
+function init () {
+    hideCards();
     helperText.hidden = true;
     headWrapper.hidden = false;
     myModal.hide();
@@ -60,9 +69,6 @@ async function asyncAxios () {
         myModal.show();      
     }
 }
-
-
-
 
 function setState(weatherData) {
     helperText.hidden = true;
@@ -118,9 +124,7 @@ function setState(weatherData) {
     console.log(image);
     // how to pull these icon images? https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2 
 
-    card1.hidden = false;
-    card2.hidden = false;
-    card3.hidden = false;
+    showCards();
 }
 
 
@@ -131,9 +135,7 @@ function checkSubmission() {
     if (isNaN(zipcodeInput.value) === true || zipcodeInput.value.length < 5) {
         helperText.hidden = false;
         zipcodeInput.style.border = "border-warning";
-        card1.hidden = true;
-        card2.hidden = true;
-        card3.hidden = true;
+        hideCards();
 
     } else {
         //update weatherLink with input.value
