@@ -13,6 +13,13 @@ input {
     /* margin: auto; */
 }
 
-body {
+.bodyCard {
     background-color: palegoldenrod;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1em;
+    height: 1000px;
+    width: 700px;
+    text-align: center;
+    padding: 2em;
 }

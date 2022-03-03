@@ -91,7 +91,7 @@ function setState(weatherData) {
 
     switch (weatherState.condition) {
         case 'clear sky':
-            document.body.style.backgroundColor = "DeepSkyBlue";
+            document.body.style.backgroundColor = "CornflowerBlue";
             break;
         case 'few clouds':
             document.body.style.backgroundColor = "PaleTurquoise";
@@ -103,10 +103,10 @@ function setState(weatherData) {
             document.body.style.backgroundColor = "LightSteelBlue";
             break;
         case 'shower rain':
-            document.body.style.backgroundColor = "Silver"; 
+            document.body.style.backgroundColor = "RoyalBlue"; 
             break;   
         case 'rain':
-            document.body.style.backgroundColor = "SteelBlue";
+            document.body.style.backgroundColor = "DarkBlue";
             break;
         case 'thunderstorm':
             document.body.style.backgroundColor = "DarkSlateGray";
