@@ -13,8 +13,8 @@ const conditionP = document.querySelector('#conditionP');
 
 
 const key = '94017407c1b8e8bc75ac701e2dbb7042';
-let userZip = '40509';
-let weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${key}`;
+let userZip;
+let weatherLink;
 let weatherData = [];
 let weatherState = {
     city: [],
@@ -87,10 +87,13 @@ function checkSubmission() {
         //update weatherLink with input.value
         userZip = zipcodeInput.value;
         console.log(userZip);
+        console.log(typeof userZip);
+        console.log(weatherLink);
+        weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${key}`;
         asyncAxios();
     }
 }
 
 
-
+// switch case
 
