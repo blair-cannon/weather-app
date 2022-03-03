@@ -68,8 +68,9 @@ async function asyncAxios () {
         console.log(request);
         weatherData = await request.data;
         setState(weatherData);
-        
-        
+        string = JSON.stringify(weatherState);
+        console.log(typeof string);
+        window.localStorage.setItem(userZip, string);
     }
     catch (error) {
         console.error('THERE WAS SOMETHING WRONG', error);
@@ -142,14 +143,26 @@ function setState(weatherData) {
 zipcodeInput.addEventListener('input', checkSubmission);
 
 function checkSubmission() {
+    userZip = zipcodeInput.value;
     if (isNaN(zipcodeInput.value) === true || zipcodeInput.value.length < 5) {
         helperText.hidden = false;
         zipcodeInput.style.border = "thick solid yellow";
         hideCards();
         image.hidden = true;
-    } else {
+    } else if (window.localStorage.getItem(userZip) != null) {
+           let retrieved = window.localStorage.getItem(userZip);
+           console.log(retrieved);
+            let jsonObject = JSON.parse(retrieved);
+            console.log(jsonObject);
+            weatherState = jsonObject;
+            console.log(weatherState);
+            // how to display this saved state to weatherContainer ????
+ 
+
+
+    } 
+    else {
         //update weatherLink with input.value
-        userZip = zipcodeInput.value;
         // console.log(userZip);
         // console.log(typeof userZip);
         // console.log(weatherLink);
@@ -157,11 +170,7 @@ function checkSubmission() {
         zipcodeInput.style.border = "thick solid black";
         weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${URLkey}`;
         asyncAxios();
-        // string = weatherState.stringify;
-        // console.log(weatherState.stringify);
-        // window.localStorage.setItem(userZip, weatherState.stringify);
-
-    }
+        }
 }
 
 

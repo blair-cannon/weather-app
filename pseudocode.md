@@ -150,4 +150,5 @@ setState
 
 to do:
 1. store state for longer period of time
-4. fix temp rows to make even sizes
+2. fix temp rows to make even sizes
+3. current location functionality
