@@ -8,8 +8,15 @@ const headWrapper = document.querySelector('#headWrapper');
 // const temperatureP = document.createElement('p');
 // const conditionP = document.createElement('p');
 const cityP = document.querySelector('#cityP');
-const temperatureP = document.querySelector('#temperatureP');
+const temperatureP1 = document.querySelector('#temperatureP1');
+const temperatureP2 = document.querySelector('#temperatureP2');
+const temperatureP3 = document.querySelector('#temperatureP3');
 const conditionP = document.querySelector('#conditionP');
+const card1 = document.querySelector('#card1');
+const card2 = document.querySelector('#card2');
+const card3 = document.querySelector('#card3');
+
+
 
 
 const key = '94017407c1b8e8bc75ac701e2dbb7042';
@@ -18,15 +25,17 @@ let weatherLink;
 let weatherData = [];
 let weatherState = {
     city: [],
-    temperature: [],
+    tempK: [],
+    tempF: [],
+    tempC: [],
     condition: []
 }
 
 
 function init () {
-    cityP.hidden = true;
-    temperatureP.hidden = true;
-    conditionP.hidden = true;
+    card1.hidden = true;
+    card2.hidden = true;
+    card3.hidden = true;
     helperText.hidden = true;
     // header.hidden = false;
     // input.hidden = false;
@@ -55,25 +64,25 @@ async function asyncAxios () {
 function setState(weatherData) {
     weatherState.city = weatherData.name;
     cityP.innerText = weatherState.city;
-    // const cityText = document.createTextNode(weatherState.city);
-    // cityP.appendChild(cityText);
-    // weatherContainer.appendChild(cityP);
 
-    weatherState.temperature = weatherData.main.temp + "K";
-    temperatureP.innerText = weatherState.temperature;
-    // const weatherText = document.createTextNode(weatherState.temperature);
-    // temperatureP.appendChild(weatherText);
-    // weatherContainer.appendChild(temperatureP);
+    weatherState.tempK = Math.round(weatherData.main.temp) + "K";
+    weatherState.tempF = Math.round((weatherData.main.temp - 273.15) * 9/5 + 32) + "\u00B0 F";
+    weatherState.tempC = Math.round(weatherData.main.temp - 273.15) + '\u00B0 C';
+
+    temperatureP1.innerText = weatherState.tempK;
+    temperatureP2.innerText = weatherState.tempF;
+    temperatureP3.innerText = weatherState.tempC;
+    
 
     weatherState.condition = weatherData.weather[0].description;
     conditionP.innerText = weatherState.condition;
-    // const conditionText = document.createTextNode(weatherState.condition);
-    // conditionP.appendChild(conditionText);
-    // weatherContainer.appendChild(conditionP);
 
-    cityP.hidden = false;
-    temperatureP.hidden = false;
-    conditionP.hidden = false;
+    // cityP.hidden = false;
+    // temperatureP.hidden = false;
+    // conditionP.hidden = false;
+    card1.hidden = false;
+    card2.hidden = false;
+    card3.hidden = false;
 }
 
 

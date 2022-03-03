@@ -146,3 +146,10 @@ init
 checkSubmission
 asyncAxios 
 setState
+
+
+to do:
+1. store state for longer period of time
+2. icons to show: switch case
+3. color background
+4. fix temp rows to make even sizes
