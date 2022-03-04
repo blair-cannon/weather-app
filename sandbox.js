@@ -3,7 +3,6 @@ const helperText = document.querySelector('#helperText');
 const weatherContainer = document.querySelector('#weatherContainer'); 
 const zipcodeInput = document.querySelector('#zipcodeInput');
 const header = document.querySelector('#header');
-// const button = document.querySelector('#button');
 const headWrapper = document.querySelector('#headWrapper');
 const cityP = document.querySelector('#cityP');
 const temperatureP1 = document.querySelector('#temperatureP1');
@@ -127,7 +126,6 @@ function setState(weatherData) {
     // image
     const imageIcon = weatherData.weather[0].icon;
     iconURL = `https://openweathermap.org/img/wn/${imageIcon}@4x.png`;
-    // iconURL.replace('icon', imageIcon);
     image.src = iconURL
     imageContainer.appendChild = image.src;
 
@@ -148,10 +146,6 @@ function checkSubmission() {
         image.hidden = true;
     } 
     else {
-        //update weatherLink with input.value
-        // console.log(userZip);
-        // console.log(typeof userZip);
-        // console.log(weatherLink);
         image.hidden = false;
         zipcodeInput.style.border = "thick solid black";
         weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${URLkey}`;
