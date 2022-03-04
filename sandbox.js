@@ -82,21 +82,69 @@ function setState(weatherData) {
     helperText.hidden = true;
     // city
     weatherState.city = weatherData.name;
-    cityP.innerText = weatherState.city;
+    // cityP.innerText = weatherState.city;
 
     // temp
     weatherState.tempK = Math.round(weatherData.main.temp) + "K";
     weatherState.tempF = Math.round((weatherData.main.temp - 273.15) * 9/5 + 32) + "\u00B0 F";
     weatherState.tempC = Math.round(weatherData.main.temp - 273.15) + '\u00B0 C';
 
-    temperatureP1.innerText = weatherState.tempK;
-    temperatureP2.innerText = weatherState.tempF;
-    temperatureP3.innerText = weatherState.tempC;
+    // temperatureP1.innerText = weatherState.tempK;
+    // temperatureP2.innerText = weatherState.tempF;
+    // temperatureP3.innerText = weatherState.tempC;
     
     // condition
     weatherState.condition = weatherData.weather[0].description;
-    conditionP.innerText = weatherState.condition;
+    // conditionP.innerText = weatherState.condition;
 
+    // switch (weatherState.condition) {
+    //     case 'clear sky':
+    //         document.body.style.backgroundColor = "CornflowerBlue";
+    //         break;
+    //     case 'few clouds':
+    //         document.body.style.backgroundColor = "PaleTurquoise";
+    //         break;
+    //     case 'scattered clouds':
+    //         document.body.style.backgroundColor = "CadetBlue";
+    //         break;
+    //     case 'broken clouds':
+    //         document.body.style.backgroundColor = "LightSteelBlue";
+    //         break;
+    //     case 'shower rain':
+    //         document.body.style.backgroundColor = "RoyalBlue"; 
+    //         break;   
+    //     case 'rain':
+    //         document.body.style.backgroundColor = "DarkBlue";
+    //         break;
+    //     case 'thunderstorm':
+    //         document.body.style.backgroundColor = "DarkSlateGray";
+    //         break;
+    //     case 'snow':
+    //         document.body.style.backgroundColor = "Snow";
+    //         break;
+    //     case 'mist':
+    //         document.body.style.backgroundColor = "Gainsboro";
+    //         break;
+    }
+
+    // image
+    const imageIcon = weatherData.weather[0].icon;
+    iconURL = `https://openweathermap.org/img/wn/${imageIcon}@4x.png`;
+    // iconURL.replace('icon', imageIcon);
+    image.src = iconURL
+    // imageContainer.appendChild = image.src;
+
+    // showCards();
+    console.log(weatherState);
+}
+
+function updatePage() {
+    helperText.hidden = true;
+    cityP.innerText = weatherState.city;
+    temperatureP1.innerText = weatherState.tempK;
+    temperatureP2.innerText = weatherState.tempF;
+    temperatureP3.innerText = weatherState.tempC;
+    conditionP.innerText = weatherState.condition;
     switch (weatherState.condition) {
         case 'clear sky':
             document.body.style.backgroundColor = "CornflowerBlue";
@@ -125,19 +173,11 @@ function setState(weatherData) {
         case 'mist':
             document.body.style.backgroundColor = "Gainsboro";
             break;
-    }
+            
+            imageContainer.appendChild = image.src;
 
-    // image
-    const imageIcon = weatherData.weather[0].icon;
-    iconURL = `https://openweathermap.org/img/wn/${imageIcon}@4x.png`;
-    // iconURL.replace('icon', imageIcon);
-    image.src = iconURL
-    imageContainer.appendChild = image.src;
-
-    showCards();
-    console.log(weatherState);
+            showCards();
 }
-
 
 
 zipcodeInput.addEventListener('input', checkSubmission);
@@ -154,8 +194,10 @@ function checkSubmission() {
            console.log(retrieved);
             let jsonObject = JSON.parse(retrieved);
             console.log(jsonObject);
+            console.log(typeof jsonObject);
             weatherState = jsonObject;
             console.log(weatherState);
+            console.log(typeof weatherState);
             // how to display this saved state to weatherContainer ????
  
 
