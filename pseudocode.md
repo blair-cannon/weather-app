@@ -152,3 +152,5 @@ to do:
 1. store state for longer period of time
 2. fix temp rows to make even sizes
 3. current location functionality
+4. file structure
+5. push to main, submit to classroom
