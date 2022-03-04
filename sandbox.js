@@ -68,9 +68,6 @@ async function asyncAxios () {
         console.log(request);
         weatherData = await request.data;
         setState(weatherData);
-        string = JSON.stringify(weatherState);
-        console.log(typeof string);
-        window.localStorage.setItem(userZip, string);
     }
     catch (error) {
         console.error('THERE WAS SOMETHING WRONG', error);
@@ -149,17 +146,6 @@ function checkSubmission() {
         zipcodeInput.style.border = "thick solid yellow";
         hideCards();
         image.hidden = true;
-    } else if (window.localStorage.getItem(userZip) != null) {
-           let retrieved = window.localStorage.getItem(userZip);
-           console.log(retrieved);
-            let jsonObject = JSON.parse(retrieved);
-            console.log(jsonObject);
-            weatherState = jsonObject;
-            console.log(weatherState);
-            // how to display this saved state to weatherContainer ????
- 
-
-
     } 
     else {
         //update weatherLink with input.value
