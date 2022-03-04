@@ -1,0 +1,35 @@
+h1 {
+    padding: 20px;
+    font-weight: bold;
+}
+
+input {
+    margin-right: 10px;
+    margin-left: 2px
+}
+
+#helperText {
+    width: max-content;
+    /* margin: auto; */
+}
+
+.bodyCard {
+    background-color: palegoldenrod;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1em;
+    height: 1000px;
+    width: 700px;
+    text-align: center;
+    padding: 2em;
+}
+
+#image {
+    width: 600px;
+    height: 400px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+  }
