@@ -29,6 +29,8 @@ const URLkey = '94017407c1b8e8bc75ac701e2dbb7042';
 
 let userZip;
 let weatherLink;
+let iconURL;
+let imageIcon;
 let weatherData = [];
 let weatherState = {
         city: [],
@@ -68,9 +70,11 @@ async function asyncAxios () {
         console.log(request);
         weatherData = await request.data;
         setState(weatherData);
-        string = JSON.stringify(weatherState);
-        console.log(typeof string);
-        window.localStorage.setItem(userZip, string);
+        console.log(weatherData);
+        console.log(weatherState);
+        // string = JSON.stringify(weatherState);
+        // console.log(typeof string);
+        // window.localStorage.setItem(userZip, string);
     }
     catch (error) {
         console.error('THERE WAS SOMETHING WRONG', error);
@@ -125,26 +129,31 @@ function setState(weatherData) {
     //     case 'mist':
     //         document.body.style.backgroundColor = "Gainsboro";
     //         break;
-    }
+    // }
 
     // image
     const imageIcon = weatherData.weather[0].icon;
     iconURL = `https://openweathermap.org/img/wn/${imageIcon}@4x.png`;
-    // iconURL.replace('icon', imageIcon);
-    image.src = iconURL
+    // image.src = iconURL;
     // imageContainer.appendChild = image.src;
 
     // showCards();
     console.log(weatherState);
+    updatePage(weatherState);
+            string = JSON.stringify(weatherState);
+        console.log(typeof string);
+        window.localStorage.setItem(userZip, string);
 }
 
-function updatePage() {
+function updatePage(weatherState) {
     helperText.hidden = true;
     cityP.innerText = weatherState.city;
     temperatureP1.innerText = weatherState.tempK;
     temperatureP2.innerText = weatherState.tempF;
     temperatureP3.innerText = weatherState.tempC;
     conditionP.innerText = weatherState.condition;
+    image.src = iconURL;
+    imageContainer.appendChild = image.src;
     switch (weatherState.condition) {
         case 'clear sky':
             document.body.style.backgroundColor = "CornflowerBlue";
@@ -173,10 +182,9 @@ function updatePage() {
         case 'mist':
             document.body.style.backgroundColor = "Gainsboro";
             break;
-            
-            imageContainer.appendChild = image.src;
-
+    }
             showCards();
+            image.hidden = false;
 }
 
 
@@ -199,8 +207,7 @@ function checkSubmission() {
             console.log(weatherState);
             console.log(typeof weatherState);
             // how to display this saved state to weatherContainer ????
- 
-
+            updatePage(weatherState);
 
     } 
     else {
