@@ -107,6 +107,7 @@ function setState(weatherData) {
             document.body.style.backgroundColor = "LightSteelBlue";
             break;
         case 'shower rain':
+        case 'moderate rain':
             document.body.style.backgroundColor = "RoyalBlue"; 
             break;   
         case 'rain':
