@@ -104,6 +104,7 @@ function setState(weatherData) {
             document.body.style.backgroundColor = "CadetBlue";
             break;
         case 'broken clouds':
+        case 'overcast clouds':
             document.body.style.backgroundColor = "LightSteelBlue";
             break;
         case 'shower rain':
@@ -111,6 +112,7 @@ function setState(weatherData) {
             document.body.style.backgroundColor = "RoyalBlue"; 
             break;   
         case 'rain':
+        case 'light rain':
             document.body.style.backgroundColor = "DarkBlue";
             break;
         case 'thunderstorm':
