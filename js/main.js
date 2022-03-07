@@ -165,21 +165,25 @@ function updatePage(weatherState) {
             document.body.style.backgroundColor = "CadetBlue";
             break;
         case 'broken clouds':
+        case 'overcast clouds':
             document.body.style.backgroundColor = "LightSteelBlue";
             break;
         case 'shower rain':
             document.body.style.backgroundColor = "RoyalBlue"; 
             break;   
         case 'rain':
+        case 'light rain':
             document.body.style.backgroundColor = "DarkBlue";
             break;
         case 'thunderstorm':
+        case 'heavy intensity rain':
             document.body.style.backgroundColor = "DarkSlateGray";
             break;
         case 'snow':
             document.body.style.backgroundColor = "Snow";
             break;
         case 'mist':
+        case 'smoke':
             document.body.style.backgroundColor = "Gainsboro";
             break;
     }
