@@ -3,7 +3,6 @@ const helperText = document.querySelector('#helperText');
 const weatherContainer = document.querySelector('#weatherContainer'); 
 const zipcodeInput = document.querySelector('#zipcodeInput');
 const header = document.querySelector('#header');
-// const button = document.querySelector('#button');
 const headWrapper = document.querySelector('#headWrapper');
 const cityP = document.querySelector('#cityP');
 const temperatureP1 = document.querySelector('#temperatureP1');
@@ -72,9 +71,6 @@ async function asyncAxios () {
         setState(weatherData);
         console.log(weatherData);
         console.log(weatherState);
-        // string = JSON.stringify(weatherState);
-        // console.log(typeof string);
-        // window.localStorage.setItem(userZip, string);
     }
     catch (error) {
         console.error('THERE WAS SOMETHING WRONG', error);
@@ -86,61 +82,20 @@ function setState(weatherData) {
     helperText.hidden = true;
     // city
     weatherState.city = weatherData.name;
-    // cityP.innerText = weatherState.city;
 
     // temp
     weatherState.tempK = Math.round(weatherData.main.temp) + "K";
     weatherState.tempF = Math.round((weatherData.main.temp - 273.15) * 9/5 + 32) + "\u00B0 F";
     weatherState.tempC = Math.round(weatherData.main.temp - 273.15) + '\u00B0 C';
-
-    // temperatureP1.innerText = weatherState.tempK;
-    // temperatureP2.innerText = weatherState.tempF;
-    // temperatureP3.innerText = weatherState.tempC;
     
     // condition
     weatherState.condition = weatherData.weather[0].description;
-    // conditionP.innerText = weatherState.condition;
 
-    // switch (weatherState.condition) {
-    //     case 'clear sky':
-    //         document.body.style.backgroundColor = "CornflowerBlue";
-    //         break;
-    //     case 'few clouds':
-    //         document.body.style.backgroundColor = "PaleTurquoise";
-    //         break;
-    //     case 'scattered clouds':
-    //         document.body.style.backgroundColor = "CadetBlue";
-    //         break;
-    //     case 'broken clouds':
-    //         document.body.style.backgroundColor = "LightSteelBlue";
-    //         break;
-    //     case 'shower rain':
-    //         document.body.style.backgroundColor = "RoyalBlue"; 
-    //         break;   
-    //     case 'rain':
-    //         document.body.style.backgroundColor = "DarkBlue";
-    //         break;
-    //     case 'thunderstorm':
-    //         document.body.style.backgroundColor = "DarkSlateGray";
-    //         break;
-    //     case 'snow':
-    //         document.body.style.backgroundColor = "Snow";
-    //         break;
-    //     case 'mist':
-    //         document.body.style.backgroundColor = "Gainsboro";
-    //         break;
-    // }
-
-    // image
     const imageIcon = weatherData.weather[0].icon;
     iconURL = `https://openweathermap.org/img/wn/${imageIcon}@4x.png`;
-    // image.src = iconURL;
-    // imageContainer.appendChild = image.src;
 
-    // showCards();
-    console.log(weatherState);
     updatePage(weatherState);
-            string = JSON.stringify(weatherState);
+        string = JSON.stringify(weatherState);
         console.log(typeof string);
         window.localStorage.setItem(userZip, string);
 }
@@ -202,23 +157,13 @@ function checkSubmission() {
         hideCards();
         image.hidden = true;
     } else if (window.localStorage.getItem(userZip) != null) {
-           let retrieved = window.localStorage.getItem(userZip);
-           console.log(retrieved);
-            let jsonObject = JSON.parse(retrieved);
-            console.log(jsonObject);
-            console.log(typeof jsonObject);
-            weatherState = jsonObject;
-            console.log(weatherState);
-            console.log(typeof weatherState);
-            // how to display this saved state to weatherContainer ????
-            updatePage(weatherState);
+        let retrieved = window.localStorage.getItem(userZip);
+        let jsonObject = JSON.parse(retrieved);
+        weatherState = jsonObject;
+        updatePage(weatherState);
 
     } 
     else {
-        //update weatherLink with input.value
-        // console.log(userZip);
-        // console.log(typeof userZip);
-        // console.log(weatherLink);
         image.hidden = false;
         zipcodeInput.style.border = "thick solid black";
         weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${URLkey}`;
