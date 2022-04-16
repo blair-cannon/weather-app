@@ -69,8 +69,6 @@ async function asyncAxios () {
         console.log(request);
         weatherData = await request.data;
         setState(weatherData);
-        console.log(weatherData);
-        console.log(weatherState);
     }
     catch (error) {
         console.error('THERE WAS SOMETHING WRONG', error);
@@ -109,6 +107,7 @@ function updatePage(weatherState) {
     conditionP.innerText = weatherState.condition;
     image.src = iconURL;
     imageContainer.appendChild = image.src;
+
     switch (weatherState.condition) {
         case 'clear sky':
             document.body.style.backgroundColor = "CornflowerBlue";
@@ -124,6 +123,7 @@ function updatePage(weatherState) {
             document.body.style.backgroundColor = "LightSteelBlue";
             break;
         case 'shower rain':
+        case 'moderate rain':
             document.body.style.backgroundColor = "RoyalBlue"; 
             break;   
         case 'rain':
@@ -132,6 +132,7 @@ function updatePage(weatherState) {
             break;
         case 'thunderstorm':
         case 'heavy intensity rain':
+
             document.body.style.backgroundColor = "DarkSlateGray";
             break;
         case 'snow':
@@ -145,6 +146,7 @@ function updatePage(weatherState) {
             showCards();
             image.hidden = false;
 }
+
 
 
 zipcodeInput.addEventListener('input', checkSubmission);
@@ -161,9 +163,7 @@ function checkSubmission() {
         let jsonObject = JSON.parse(retrieved);
         weatherState = jsonObject;
         updatePage(weatherState);
-
-    } 
-    else {
+    } else {
         image.hidden = false;
         zipcodeInput.style.border = "thick solid black";
         weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${URLkey}`;
