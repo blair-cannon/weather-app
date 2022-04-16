@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios').default;
 const helperText = document.querySelector('#helperText');
 const weatherContainer = document.querySelector('#weatherContainer'); 
 const zipcodeInput = document.querySelector('#zipcodeInput');
