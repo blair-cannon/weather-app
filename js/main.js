@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const helperText = document.querySelector('#helperText');
 const weatherContainer = document.querySelector('#weatherContainer'); 
 const zipcodeInput = document.querySelector('#zipcodeInput');
