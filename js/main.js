@@ -28,6 +28,8 @@ const URLkey = '94017407c1b8e8bc75ac701e2dbb7042';
 
 let userZip;
 let weatherLink;
+let iconURL;
+let imageIcon;
 let weatherData = [];
 let weatherState = {
         city: [],
@@ -78,20 +80,33 @@ function setState(weatherData) {
     helperText.hidden = true;
     // city
     weatherState.city = weatherData.name;
-    cityP.innerText = weatherState.city;
 
     // temp
     weatherState.tempK = Math.round(weatherData.main.temp) + "K";
     weatherState.tempF = Math.round((weatherData.main.temp - 273.15) * 9/5 + 32) + "\u00B0 F";
     weatherState.tempC = Math.round(weatherData.main.temp - 273.15) + '\u00B0 C';
-
-    temperatureP1.innerText = weatherState.tempK;
-    temperatureP2.innerText = weatherState.tempF;
-    temperatureP3.innerText = weatherState.tempC;
     
     // condition
     weatherState.condition = weatherData.weather[0].description;
+
+    const imageIcon = weatherData.weather[0].icon;
+    iconURL = `https://openweathermap.org/img/wn/${imageIcon}@4x.png`;
+
+    updatePage(weatherState);
+        string = JSON.stringify(weatherState);
+        console.log(typeof string);
+        window.localStorage.setItem(userZip, string);
+}
+
+function updatePage(weatherState) {
+    helperText.hidden = true;
+    cityP.innerText = weatherState.city;
+    temperatureP1.innerText = weatherState.tempK;
+    temperatureP2.innerText = weatherState.tempF;
+    temperatureP3.innerText = weatherState.tempC;
     conditionP.innerText = weatherState.condition;
+    image.src = iconURL;
+    imageContainer.appendChild = image.src;
 
     switch (weatherState.condition) {
         case 'clear sky':
@@ -116,24 +131,20 @@ function setState(weatherData) {
             document.body.style.backgroundColor = "DarkBlue";
             break;
         case 'thunderstorm':
+        case 'heavy intensity rain':
+
             document.body.style.backgroundColor = "DarkSlateGray";
             break;
         case 'snow':
             document.body.style.backgroundColor = "Snow";
             break;
         case 'mist':
+        case 'smoke':
             document.body.style.backgroundColor = "Gainsboro";
             break;
     }
-
-    // image
-    const imageIcon = weatherData.weather[0].icon;
-    iconURL = `https://openweathermap.org/img/wn/${imageIcon}@4x.png`;
-    image.src = iconURL
-    imageContainer.appendChild = image.src;
-
-    showCards();
-    console.log(weatherState);
+            showCards();
+            image.hidden = false;
 }
 
 
@@ -147,8 +158,12 @@ function checkSubmission() {
         zipcodeInput.style.border = "thick solid yellow";
         hideCards();
         image.hidden = true;
-    } 
-    else {
+    } else if (window.localStorage.getItem(userZip) != null) {
+        let retrieved = window.localStorage.getItem(userZip);
+        let jsonObject = JSON.parse(retrieved);
+        weatherState = jsonObject;
+        updatePage(weatherState);
+    } else {
         image.hidden = false;
         zipcodeInput.style.border = "thick solid black";
         weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip},us&appid=${URLkey}`;
