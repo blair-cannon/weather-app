@@ -5,10 +5,10 @@ Weather App
 
 ## Description
 
-o	Use of Axios to fetch weather data from an API
-o	Stores data in local storage for minimization of API requests
-o	Dynamic changes to CSS
-o	Handles successful and unsuccessful attempts
+o	Use of Axios to fetch weather data from an API <br />
+o	Stores data in local storage for minimization of API requests <br />
+o	Dynamic changes to CSS <br />
+o	Handles successful and unsuccessful attempts <br />
 
 
 ## Tech Stack
